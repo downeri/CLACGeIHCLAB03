@@ -1,9 +1,12 @@
 //Test
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <glew.h>
 #include <glfw3.h>
 #include <windows.h>
+#include <cstdlib>
+#include <ctime>
 //Dimensiones de la ventana
 const int WIDTH = 800, HEIGHT = 600;
 GLuint VAO, VBO, shader;
@@ -120,8 +123,16 @@ void CompileShaders() {
 
 
 }
+
+float getRandColor() {
+	float randColor= static_cast<float>(std::rand()) / RAND_MAX;
+	printf("%.2f ", randColor);
+	return randColor;
+}
+
 int main()
 {
+	std::srand(static_cast<unsigned>(std::time(nullptr)));
 	//Inicialización de GLFW
 	if (!glfwInit())
 	{
@@ -179,30 +190,9 @@ int main()
 		//Recibir eventos del usuario
 		glfwPollEvents();
 
-		
-		switch (color)
-		{
-		default:
-			break;
-		case 0:
-			rojo = 1.0f;
-			verde = 0.0f;
-			azul = 0.0f;
-			break;
-		case 1:
-			rojo = 0.0f;
-			verde = 1.0f;
-			azul = 0.0f;
-			break;
-		case 3:
-			rojo = 0.0f;
-			verde = 0.0f;
-			azul = 1.0f;
-			break;
-		} 
-
-		//Limpiar la ventana
-		glClearColor(rojo, verde, azul, 1.0f);
+	
+		//Limpiar la ventna
+		glClearColor(getRandColor(), getRandColor(), getRandColor(), 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(shader);
@@ -215,10 +205,7 @@ int main()
 
 
 		glfwSwapBuffers(mainWindow);
-		color = color + 1;
-		if (color == 4) {
-			color = 0;
-		}
+		
 		Sleep(1000);
 	}
 
