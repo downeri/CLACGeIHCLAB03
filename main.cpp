@@ -207,7 +207,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	//CREAR VENTANA
-	GLFWwindow *mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "Primer ventana", NULL, NULL);
+	GLFWwindow *mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "Practica 1", NULL, NULL);
 
 	if (!mainWindow)
 	{
