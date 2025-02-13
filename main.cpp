@@ -265,7 +265,7 @@ int main()
 
 		glfwSwapBuffers(mainWindow);
 		
-		Sleep(1000);
+		Sleep(2000);
 	}
 
 
