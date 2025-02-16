@@ -52,16 +52,16 @@ void CrearTriangulo()
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //pasarle los datos al VBO asignando tamano, los datos y en este caso es estático pues no se modificarán los valores
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //pasarle los datos al VBO asignando tamano, los datos y en este caso es est tico pues no se modificar n los valores
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0);//Stride en caso de haber datos de color por ejemplo, es saltar cierta cantidad de datos
 		glEnableVertexAttribArray(0);
-		//agregar valores a vèrtices y luego declarar un nuevo vertexAttribPointer
+		//agregar valores a v rtices y luego declarar un nuevo vertexAttribPointer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
 
 }
-void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType) //Función para agregar los shaders a la tarjeta gráfica
+void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType) //Funci n para agregar los shaders a la tarjeta gr fica
 //the Program recibe los datos de theShader
 
 
@@ -71,11 +71,11 @@ void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType) //F
 	theCode[0] = shaderCode;//shaderCode es el texto que se le pasa a theCode
 	GLint codeLength[1];
 	codeLength[0] = strlen(shaderCode);//longitud del texto
-	glShaderSource(theShader,1, theCode, codeLength);//Se le asigna al shader el código
+	glShaderSource(theShader,1, theCode, codeLength);//Se le asigna al shader el c digo
 	glCompileShader(theShader);//Se comila el shader
 	GLint result = 0;
 	GLchar eLog[1024] = { 0 };
-	//verificaciones y prevención de errores
+	//verificaciones y prevenci n de errores
 	glGetShaderiv(theShader, GL_COMPILE_STATUS, &result);
 	if (!result)
 	{
@@ -83,7 +83,7 @@ void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType) //F
 		printf("EL error al compilar el shader %d es: %s \n",shaderType, eLog);
 		return;
 	}
-	glAttachShader(theProgram, theShader);//Si no hubo problemas se asigna el shader a theProgram el cual asigna el código a la tarjeta gráfica
+	glAttachShader(theProgram, theShader);//Si no hubo problemas se asigna el shader a theProgram el cual asigna el c digo a la tarjeta gr fica
 }
 
 void CompileShaders() {
@@ -98,8 +98,8 @@ void CompileShaders() {
 	//Para terminar de linkear el programa y ver que no tengamos errores
 	GLint result = 0;
 	GLchar eLog[1024] = { 0 };
-	glLinkProgram(shader);//se linkean los shaders a la tarjeta gráfica
-	 //verificaciones y prevención de errores
+	glLinkProgram(shader);//se linkean los shaders a la tarjeta gr fica
+	 //verificaciones y prevenci n de errores
 	glGetProgramiv(shader, GL_LINK_STATUS, &result);
 	if (!result)
 	{
@@ -121,10 +121,10 @@ void CompileShaders() {
 }
 int main()
 {
-	//Inicialización de GLFW
+	//Inicializaci n de GLFW
 	if (!glfwInit())
 	{
-		printf("Falló inicializar GLFW");
+		printf("Fall  inicializar GLFW");
 		glfwTerminate();
 		return 1;
 	}
@@ -144,7 +144,7 @@ int main()
 		glfwTerminate();
 		return 1;
 	}
-	//Obtener tamaño de Buffer
+	//Obtener tama o de Buffer
 	int BufferWidth, BufferHeight;
 	glfwGetFramebufferSize(mainWindow, &BufferWidth, &BufferHeight);
 
@@ -156,7 +156,7 @@ int main()
 
 	if (glewInit() != GLEW_OK)
 	{
-		printf("Falló inicialización de GLEW");
+		printf("Fall  inicializaci n de GLEW");
 		glfwDestroyWindow(mainWindow);
 		glfwTerminate();
 		return 1;
@@ -166,7 +166,7 @@ int main()
 	//Asignar Viewport
 	glViewport(0, 0, BufferWidth, BufferHeight);
 
- //Crear tríangulo
+ //Crear tr angulo
 	CrearTriangulo();
 	CompileShaders();
 
